@@ -1,23 +1,24 @@
-import './App.css';
-
+import Header from './component/Header';
+import DayList from './component/DayList';
+import Day from './component/Day';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import EmptyPage from './component/EmptyPage';
+import CreateWord from './component/CreateWord';
+import CreateDay from './component/CreateDay';
 function App() {
-  const name = 'Tom';
-  const naver = {
-    name: '네이버',
-    url: 'https://naver.com',
-  };
   return (
-    <div className="App">
-      <h1
-        style={{
-          color: 'red',
-          backgroundColor: 'green',
-        }}
-      >
-        Hello, {name}.<p>{2 + 3}</p>
-      </h1>
-      <a href={naver.url}>{naver.name}</a>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route exact path="/" element={<DayList />} />
+          <Route path="/day/:day" element={<Day />} />
+          <Route path="/create_word" element={<CreateWord />} />
+          <Route path="/create_day" element={<CreateDay />} />
+          <Route path="*" element={<EmptyPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
